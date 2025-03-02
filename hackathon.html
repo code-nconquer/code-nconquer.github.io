@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>code'n conquer hackathon</title>
+</head>
+<body style="background-color:powderblue;">
+<div class="form" >
+<h1> register now</h1>
+<img src="C:\Users\DELL\Downloads\images.jpeg" alt="image not found">
+<form id="surveyForm">
+<label for="name">Name: </label>
+<input type="text"id="name" name="your name"
+placeholder="your name required" />
+<br> <br>
+<label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required>
+<br> <br>
+<label for="dropdown">select the group to join</label>
+<select id="dropdown" name="dropdown">
+<option value="">select an option</option>
+<option value="group1">group1</option>
+<option value="group2">group2</option>
+<option value="group3">group3</option>
+<option value="group4">group4</option>
+<option value="group5">group5</option>
+ <option value="group6">group6</option>
+<option value="group7">group7</option>
+<option value="group8">group8</option>
+<option value="group9">group9</option>
+<option value="group10">group10</option>
+<br> <br>
+<br> 
+<br>
+<input type="submit" value="Submit">
+</div> 
+ </form>
+<script>
+// Initialize response counts from localStorage or set to zero
+const responseCounts = JSON.parse(localStorage.getItem('responseCounts')) || {
+    "group1": 0,
+    "group2": 0,
+    "group3": 0,
+    "group4": 0,
+    "group5": 0,
+    "group6": 0,
+    "group7": 0,
+    "group8": 0,
+    "group9": 0,
+    "group10": 0
+};
+
+const dropdown = document.getElementById('dropdown');
+const surveyForm = document.getElementById('surveyForm');
+
+// Set the initial response count in the dropdown options
+function updateDropdown() {
+    const options = dropdown.querySelectorAll('option');
+    options.forEach(opt => {
+        const optionText = opt.value;
+        if (responseCounts[optionText] >= 6) {
+            opt.disabled = true;
+            opt.style.color = 'gray'; // Disable option if it has 6 responses
+        } else {
+            opt.disabled = false;
+            opt.style.color = ''; // Enable option if not disabled
+        }
+    });
+}
+
+// Listen for form submission
+surveyForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const selectedOption = dropdown.value;
+
+    // Validate that all fields are filled
+    if (!name || !email || !selectedOption) {
+        alert('All fields are required!');
+        return;
+    }
+
+    // Update the response count for the selected option
+    responseCounts[selectedOption]++;
+
+    // Store the updated response counts in localStorage
+    localStorage.setItem('responseCounts', JSON.stringify(responseCounts));
+
+    // Store the user response in an array
+    let userResponses = JSON.parse(localStorage.getItem('userResponses')) || [];
+    userResponses.push({
+        name: name,
+        email: email,
+        selectedOption: selectedOption
+    });
+
+    // Store the user responses in localStorage
+    localStorage.setItem('userResponses', JSON.stringify(userResponses));
+
+    // Alert message after successful submission
+    alert(`Thank you for your response!\nName: ${name}\nEmail: ${email}\nOption: ${selectedOption}`);
+
+    // Reset the form after submission
+    surveyForm.reset();
+
+    // Update the dropdown to disable full options after submission
+    updateDropdown();
+});
+
+// Initial call to set up the dropdown on page load
+updateDropdown();
+</script>
+
+
+
+
+	
+</body>
+</html>
+
