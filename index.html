@@ -4,6 +4,76 @@
 <title>code'n conquer hackathon</title>
 <link rel="stylesheet" href="https://raw.githubusercontent.com/code-nconquer/code-nconquer.github.io/refs/heads/main/styles.css">
 </head>
+<style>
+*{
+ margin: 0;
+ padding:o;
+ box-sizing: border-box;
+}
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f7fc;
+	display:flex;
+	justify-content:centre;
+	min-height:100vh;
+}
+.form {
+	background:powderblue;
+	padding:30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	width:100%;
+	max-width:400px;
+}
+label {
+	font-size: 14px;
+	color: #333;
+	margin-bottom: 5px;
+	display: block;
+}
+.container{
+	display:flex;
+	align-items: centre;
+	justify-content: centre;
+	gap: 30px;
+	padding: 20px;
+	}
+.image-container {
+width:100%;
+max-width:400px;	
+text-align: centre;
+}
+.image-container img {
+    width: 100%;  
+    height: auto; 
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.image-container p{
+	font-size: 16px;
+	color:#333;
+text-align: right;
+margin-top: 10px;
+line-height: 1.6;
+}
+input, select {
+ width:100%;
+ padding: 12px;
+ margin-bottom: 15px;
+border: 1px solid #ddd;
+border-radius:8px
+}
+@media (max-width: 768px){
+.container{
+	flex-direction: column;
+	gap:20px;
+}
+.image-container img {
+	max-width: 100%;
+}
+}
+</style>
 <body>
 <div class="form" >
 <h1> register now</h1>
